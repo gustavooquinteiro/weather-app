@@ -1,20 +1,23 @@
+import Flags from "country-flag-icons/react/3x2";
 import './current-weather.css'
 
-const CurrentWeather = ({data}) => {
+const CurrentWeather = ({ data }) => {
+
+    const [city, country] = data.city.split(",")
+    const Flag = Flags[country.trim()]
+
     return (
         <div className='weather'>
             <div className='top'>
-                <div>
-                    <p className='city'>{data.city}</p>
-                    <p className='weather-description'>{data.weather[0].description}</p>
-                </div>
-                <img alt="weather" className='weather-icon' src={`icons/${data.weather[0].icon}.png`} />
+                <p className='title'>Weather Today in {city}</p>
+                <Flag className='flag' />
             </div>
             <div className='bottom'>
+                <img alt={data.weather[0].description} className='weather-icon' src={`icons/${data.weather[0].icon}.png`} />
                 <p className='temperature'>{Math.round(data.main.temp)}°C</p>
                 <div className='details'>
                     <div className='parameter-row'>
-                        <span className='parameter-label'>Details</span>
+                        <span className='details-label'>Details</span>
                     </div>
                     <div className='parameter-row'>
                         <span className='parameter-label'>Feels like</span>
