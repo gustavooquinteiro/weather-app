@@ -19,18 +19,17 @@ function App() {
     Promise.all([currentWeatherFetch, forecastFetch]).then(async (response) => {
       const weatherResponse = await response[0].json()
       const forecastResponse = await response[1].json()
-      
-      setWeather({city: searchData.label, ...weatherResponse})
-      setForecast({city: searchData.label, ...forecastResponse})
+
+      setWeather({ city: searchData.label, ...weatherResponse })
+      setForecast({ city: searchData.label, ...forecastResponse })
     }).catch((err) => console.log(err))
   }
-  console.log(weather)
-  console.log(forecast)
+
   return (
     <div className="container">
       <Search onSearchChange={handleOnSearchChange} />
-      {weather && <CurrentWeather data={weather}/>}
-      {forecast && <Forecast data={forecast}/>}
+      {weather && <CurrentWeather data={weather} />}
+      {forecast && <Forecast data={forecast} />}
     </div>
   );
 }
